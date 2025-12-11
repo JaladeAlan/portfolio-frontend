@@ -71,7 +71,7 @@ export default function App() {
           </Routes>
         </main>
 
-        {!admin && <Footer />}
+        {!admin }
       </div>
     </Router>
   );
