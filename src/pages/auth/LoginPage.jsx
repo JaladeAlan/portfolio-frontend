@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
-export default function LoginPage() {
+export default function AdminLogin() {
   const { login } = useContext(AuthContext);
   const [form, setForm] = useState({ email: "", password: "" });
 
