@@ -4,7 +4,8 @@ import api from "./api/axios";
 
 // Public Pages
 import Home from "./pages/HomePage";
-import Projects from "./pages/ProjectsPage";
+import ProjectsPage from "./pages/ProjectsPage";
+import ProjectDetailsPage from "./pages/ProjectDetailsPage";
 import Contact from "./pages/ContactPage";
 
 // Admin
@@ -50,7 +51,8 @@ export default function App() {
 
             {/* PUBLIC ROUTES */}
             <Route path="/" element={<Home />} />
-            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects" element={<ProjectsPage />} />
+            <Route path="/projects/:id" element={<ProjectDetailsPage />} />
             <Route path="/contact" element={<Contact />} />
 
             {/* ADMIN AUTH */}
