@@ -9,8 +9,8 @@ export default function HomePage() {
   useEffect(() => {
     api
       .get("/projects?limit=3")
-      .then((res) => setProjects(res.data.projects || []))
-      .catch(() => setProjects([]))
+      .then((res) => setProjects(res.data || []))
+      .catch(() => setProjects(res.data))
       .finally(() => setLoading(false));
   }, []);
 

@@ -29,62 +29,82 @@ export default function ProjectsPage() {
       ) : projects.length === 0 ? (
         <p className="text-center text-gray-500">No projects available.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {projects.map((project) => {
-            const imageUrl = project.image_url || `${import.meta.env.VITE_API_BASE_URL}/${project.image}`;
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+  {projects.map((project) => {
+    const imageUrl =
+      project.image_url || `${import.meta.env.VITE_API_BASE_URL}/${project.image}`;
 
-            return (
-              <div
-                key={project.id}
-                className="bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer flex flex-col"
-                onClick={() => navigate(`/projects/${project.id}`)}
-              >
-                {imageUrl ? (
-                  <img
-                    src={imageUrl}
-                    alt={project.title}
-                    className="w-full h-48 object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-48 bg-gray-200"></div>
-                )}
+    return (
+      <div
+        key={project.id}
+        className="bg-white shadow-lg rounded-lg overflow-hidden cursor-pointer flex flex-col
+                   transform transition duration-300 hover:scale-105 hover:shadow-2xl"
+        onClick={() => navigate(`/projects/${project.id}`)}
+      >
+        {imageUrl ? (
+          <img
+            src={imageUrl}
+            alt={project.title}
+            className="w-full h-48 object-cover"
+          />
+        ) : (
+          <div className="w-full h-48 bg-gray-200"></div>
+        )}
 
-                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
-                  <div>
-                    <h3 className="text-lg sm:text-xl font-semibold mb-1">{project.title}</h3>
-                    <p className="text-gray-500 text-sm mb-2">{project.stack}</p>
-                    <p className="text-gray-600 text-sm sm:text-base mb-4 line-clamp-3">
-                      {project.summary}
-                    </p>
-                  </div>
+        <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 className="text-lg sm:text-xl font-semibold mb-1">{project.title}</h3>
+            <p className="text-gray-500 text-sm mb-2">{project.stack}</p>
+            <p className="text-gray-600 text-sm sm:text-base mb-4 line-clamp-3">
+              {project.summary}
+            </p>
+          </div>
 
-                  <div className="mt-auto flex space-x-4">
-                    {project.github && (
-                      <a
-                        href={project.github}
-                        target="_blank"
-                        onClick={(e) => e.stopPropagation()} // prevent card click
-                        className="text-gray-700 hover:text-yellow-400 transition-colors font-semibold"
-                      >
-                        GitHub
-                      </a>
-                    )}
-                    {project.website && (
-                      <a
-                        href={project.website}
-                        target="_blank"
-                        onClick={(e) => e.stopPropagation()}
-                        className="text-blue-500 hover:text-yellow-400 transition-colors font-semibold"
-                      >
-                        Live Site
-                      </a>
-                    )}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
+          {/* Buttons */}
+          <div className="mt-4 flex flex-wrap justify-between gap-2">
+            <div className="flex flex-wrap gap-2">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  onClick={(e) => e.stopPropagation()}
+                  className="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition font-semibold"
+                >
+                  GitHub
+                </a>
+              )}
+
+              {project.website && (
+                <a
+                  href={project.website}
+                  target="_blank"
+                  onClick={(e) => e.stopPropagation()}
+                  className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition font-semibold"
+                >
+                  Live Site
+                </a>
+              )}
+            </div>
+
+            {/* View Project button aligned right */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(`/projects/${project.id}`);
+              }}
+              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-yellow-400 hover:text-gray-900 transition font-semibold"
+            >
+              View Project →
+            </button>
+          </div>
         </div>
+      </div>
+    );
+  })}
+</div>
+
+
+
       )}
     </div>
   );
